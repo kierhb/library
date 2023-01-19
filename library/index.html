@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/svg+xml" href="/javascript.svg" />
+    <link rel="stylesheet" href="/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <title>Library</title>
+  </head>
+  <body>
+    <header class="header">
+        <h1 class="header--title">myLibrary</h1>
+        <h4 class="header--project">JavaScript Course - The Odin Project</h4>
+    </header>
+    <main class="main-container">
+        <button id="add-btn">+ Add Book</button>
+
+        <div class="popup">
+            <div id="close-btn">&times;</div>
+            <h3 id="form--title">Add Book</h3>
+            <input id="book--title" type="text" placeholder="Title">
+            <input id="book--author" type="text" placeholder="Author">
+            <input id="book--pages" type="number" placeholder="Pages">
+            <div id="book--read">
+                Have you read it?
+                <input id="book--checkbox" type="checkbox">
+            </div>
+            <button id="submit--btn" type="submit">Submit</button>
+        </div>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
