@@ -47,25 +47,29 @@ body {
     font-weight: bold;
 }
 
-#add-btn {
+.nav-container {
+    height: 50px;
     margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#add-btn, #del-all-btn {
+    gap: 40px;
     border: none;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 20px;
     font-weight: bold;
     width: 180px;
-    height: 50px;
-    margin-bottom: 15px;
     border-radius: 25px;
     cursor: pointer;
 }
 
-#add-btn:hover {
+#add-btn:hover, #del-all-btn:hover {
     background: #e5e5dc;
 }
 
-#add-btn:active, #submit--btn:active {
+#add-btn:active, #del-all-btn:active , #submit--btn:active {
     box-shadow: 0 2px 2px grey;
     transform: translateY(1px);
 }
@@ -192,7 +196,7 @@ input {
     margin: 20px;
 
     gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 3fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
     grid-auto-rows: 325px;
     
     padding: 0;
@@ -206,7 +210,6 @@ input {
     color: #032539;
     border-radius: 15px;
     box-shadow: 2px 8px 10px #118ab2;
-
 }
 
 #title {
@@ -230,18 +233,18 @@ input {
 }
 
 #read-btn {
-    background-color: #219ebc;
+    background-color: #249ea0;
 }
 
 #unread-btn {
-    background-color: #d62828;
+    background-color: #fd5901;
 }
 
 #remove-btn {
-    background-color: #fb8500;
+    background-color: #fa9521;
 }
 
-#read-btn, #remove-btn {
+#read-btn, #remove-btn, #unread-btn {
     margin: 10px 0 0;
     border: 0;
     color: white;
@@ -252,7 +255,7 @@ input {
     
 }
 
-#read-btn:active, #remove-btn:active {
+#read-btn:active, #remove-btn:active, #unread-btn:active {
     box-shadow: 0 2px 2px grey;
     transform: translateY(1px);
 }

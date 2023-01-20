@@ -2,8 +2,16 @@ const popup = document.querySelector(".popup")
 const addBtn = document.querySelector("#add-btn")
 const closeBtn = document.querySelector("#close-btn")
 const submitBtn = document.querySelector("#submit--btn")
+const delAllBtn = document.querySelector("#del-all-btn")
 
 const ulEl = document.querySelector(".ul-el");
+
+delAllBtn.addEventListener("click", function() {
+    localStorage.clear()
+    myLibrary = []
+    ulEl.innerHTML = ""
+    render()
+})
 
 addBtn.addEventListener("click", function() {
     popup.classList.add("active")
@@ -19,8 +27,9 @@ submitBtn.addEventListener("click", function() {
 }) 
 */
 
+const booksFromLocalStorage = JSON.parse(localStorage.getItem("myBooks"))
 
-let myLibrary = []
+let myLibrary = !booksFromLocalStorage ? [] : JSON.parse(localStorage.getItem("myBooks"))
 
 const bookTitle = document.querySelector("#book--title")
 const bookAuthor = document.querySelector("#book--author")
@@ -49,45 +58,21 @@ function addBookToLibrary() {
     localStorage.setItem("myBooks", JSON.stringify(myLibrary))
 }
 
-submitBtn.addEventListener("click", function() {
+submitBtn.addEventListener("click", function(event) {
     addBookToLibrary()
-    //render(myLibrary)
     render()
-    //! popup.classList.remove("active")
+    popup.classList.remove("active")
+    event.preventDefault()
+    
+    bookTitle.value = ""
+    bookAuthor.value = ""
+    bookPages.value = ""
+    bookRead.checked = false
 })
 
-//* Retrieve books from localStorage
-
-
-/*
-function render(library) {
-    let bookItems = ""
-    for (let i = 0; i < library.length; i++) {
-        bookItems += `
-            <li class="book-el">
-                <h3 id="title">${library[i].title}</h3>
-                <h4 id="author">by ${library[i].author}</h4>
-                <div id="pages">${library[i].pages} pages</div>
-                <button id="read-btn">Read</button>
-                <button id="remove-btn">Remove</button>
-            </li>
-        `
-    }
-    ulEl.innerHTML = bookItems
-    console.log(myLibrary)
-
-    //* Add functionalities on book buttons
-    const readBtn = document.querySelector("#read-btn")
-    const removeBtn = document.querySelector("#remove-btn")
-    
-    removeBtn.addEventListener("click", function() {
-        console.log("remove clicked!")
-    })
-}
-*/
 
 function render() {
-    const myBooks = JSON.parse(localStorage.getItem("myBooks") || "[]")
+    const myBooks = JSON.parse(localStorage.getItem("myBooks"))
     const readBtn = document.querySelectorAll("#read-btn")
     const removeBtn = document.querySelectorAll("#remove-btn")
 
@@ -99,7 +84,9 @@ function render() {
                 <h3 id="title">${book.title}</h3>
                 <h4 id="author">by ${book.author}</h4>
                 <div id="pages">${book.pages} pages</div>
-                <button id="read-btn">Read</button>
+                ${book.read ? 
+                    `<button id="unread-btn">Unread</button>` : 
+                    `<button id="read-btn">Read</button>`}
                 <button onclick="remove()" id="remove-btn">Remove</button>
             </li>
         `
