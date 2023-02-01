@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    font-family: "Quicksand" ,system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f0eef1;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #26495c;
+    padding: 20px;
+    height: 90px;
+    box-shadow: 0px 2.98256px 7.4564px rgba(0, 0, 0, 0.35);
+    background-color: white;
+}
+
+.header--title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.header--project {
+    font-size: 20px;
+    color: #c66b3d;
+}
+
+.main-container {
+    padding: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#close-btn {
+    position: absolute;
+    left: 90%;
+    top: 2.5%;
+    font-size: 30px;
+    cursor: pointer;
+    color: #26495c;
+    font-weight: bold;
+}
+
+.nav-container {
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+#add-btn, #del-all-btn {
+    gap: 40px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 180px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+#add-btn:hover, #del-all-btn:hover {
+    background: #e5e5dc;
+}
+
+#add-btn:active, #del-all-btn:active , #submit--btn:active {
+    box-shadow: 0 2px 2px grey;
+    transform: translateY(1px);
+}
+
+.popup {
+    width: 350px;
+    height: 450px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column wrap;
+    padding: 20px 40px;
+    left: 50%;
+    
+    position: absolute;
+    background-color: #e5e5dc;
+    border-radius: 25px;
+
+    opacity: 0;
+    top: -200%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 300ms ease-in-out,
+                top 1000ms ease-in-out,
+                transform 1000ms ease-in-out;
+}
+
+.popup.active {
+    opacity: 1;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
+
+}
+
+.popup > * {
+    position: relative;
+    top: 10px;
+    opacity: 0;
+}
+
+.popup.active > * {
+    top: 0px;
+    opacity: 1;
+}
+
+.popup.active #book--title {
+    transition: all 300ms ease-in-out 200ms;
+}
+
+.popup.active #book--author {
+    transition: all 300ms ease-in-out 250ms;
+}
+
+.popup.active #book--pages {
+    transition: all 300ms ease-in-out 300ms;
+}
+
+.popup.active #book--read {
+    transition: all 300ms ease-in-out 350ms;
+}
+
+.popup.active #submit--btn {
+    transition: all 300ms ease-in-out 350ms;
+}
+
+#form--title {
+    color: #c66b3d;
+    font-weight: bold;
+    font-size: 35px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    border: 0px;
+    border-radius: 5px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+#book--read {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+#book--checkbox {
+    height: 25px;
+    width: 25px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#submit--btn {
+    background-color: #26495c;
+    width: 80%;
+    padding: 10px;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-weight: bold;
+    width: 180px;
+    height: 50px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+#submit--btn:active {
+    color: #26495c;
+    background-color: white;
+    border: solid 5px #26495c;
+}
+
+.ul-el {
+    width: 90%;
+    list-style-type: none;
+    display: grid;
+    margin: 20px;
+
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
+    grid-auto-rows: 325px;
+    
+    padding: 0;
+}
+
+.book-el {
+    background-color: #fbf3f2;
+    padding: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    color: #032539;
+    border-radius: 15px;
+    box-shadow: 2px 8px 10px #118ab2;
+}
+
+#title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 85px;
+}
+
+#author {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+#pages {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+#read-btn {
+    background-color: #249ea0;
+}
+
+#unread-btn {
+    background-color: #fd5901;
+}
+
+#remove-btn {
+    background-color: #fa9521;
+}
+
+#read-btn, #remove-btn, #unread-btn {
+    margin: 10px 0 0;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    height: 35px;
+    border-radius: 18px;
+    cursor: pointer;
+    
+}
+
+#read-btn:active, #remove-btn:active, #unread-btn:active {
+    box-shadow: 0 2px 2px grey;
+    transform: translateY(1px);
+}

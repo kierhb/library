@@ -5,24 +5,29 @@ html {
 body {
     margin: 0;
     font-family: "Poppins";
+    background-color: var(--wrapper-color);
 
+    --max-width: 1200px;
     --header-color: #36404a;
-    --header-title-color: #ffffff;
+    --white: #ffffff;
     --project-title-color: #45addf;
+    --wrapper-color: #ebeff2;
 }
 
 .container {
 
 }
 
+
 /* H E A D E R */
 .header {
     background-color: var(--header-color);
-    
+    margin: 0;
+    height: 80px;
 }
 
 .header-wrapper {
-    max-width: 1200px;
+    max-width: var(--max-width);
     height: 80px;
     margin: 0 auto;
     display: flex;
@@ -31,11 +36,12 @@ body {
 }
 
 #logo {
-    color: var(--header-title-color);
+    color: var(--white);
     font-size: 2.5rem;
     font-weight: 400;
     margin: 0;
     cursor: default;
+    margin-left: 15px;
 }
 
 #project--title {
@@ -44,4 +50,51 @@ body {
     font-weight: 400;
     margin: 0;
     cursor: default;
+    margin-right: 15px;
+}
+
+/* N A V   B A R */
+.wrapper {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    border: 1px solid red;
+    height: 90vh;
+}
+
+.nav-container {
+    padding: 12px 0px 12px 10px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+#nav--title {
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--header-color);
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.button--container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.button--container > button {
+    margin: 0.2em 1.5em;
+    background-color: var(--project-title-color);
+    color: var(--white);
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 7px;
+    gap: 5px;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }

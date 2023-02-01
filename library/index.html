@@ -8,6 +8,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="/style.css">
         <title>Library</title>
     </head>
@@ -22,12 +24,17 @@
 
             <div class="wrapper">
                 <div class="nav-container">
-                    <h3 id="nav--title">My Books</h3>
-                    <button id="add--book">Add book</button>
-                    <button id="del--all">Delete All</button>
+                    <h3 id="nav--title">Read Books: 0</h3>
+                    <h3 id="nav--title">Unread Books: 0</h3>
+                    <h3 id="nav--title">Total Books: 0</h3>
+
+                    <div class="button--container">
+                        <button id="add---book"><span class="material-symbols-outlined">add_circle</span> Add book</button>
+                        <button id="del---all"><span class="material-symbols-outlined">delete_forever</span>Delete All</button>
+                    </div>
                 </div>
     
-                <ul class="book-display">
+                <ul class="books-display">
     
                 </ul>
                 
