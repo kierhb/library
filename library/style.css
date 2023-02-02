@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
      font-size: 62.5%;
 }
@@ -12,6 +16,9 @@ body {
     --white: #ffffff;
     --project-title-color: #45addf;
     --wrapper-color: #ebeff2;
+    --button-container: #fafbfd;
+    --font-category-color: #999ba1;
+    --book-title-color: #5d5f6d;
 }
 
 .container {
@@ -57,8 +64,6 @@ body {
 .wrapper {
     max-width: var(--max-width);
     margin: 0 auto;
-    border: 1px solid red;
-    height: 90vh;
 }
 
 .nav-container {
@@ -97,4 +102,114 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
+}
+
+/* B O O K   D I S P L A Y */
+ul {
+    list-style-type: none;
+}
+
+.books-display {
+    margin: 0 25px 25px;
+    padding: 0;
+    height: 90vh;
+}
+
+.book--el {
+    background-color: var(--white);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    box-shadow: 0px 3px 5px rgb(81 97 114 / 25%);
+}
+
+.book--details {
+    padding: 20px;
+    height: 75%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
+.book--details > * {
+    margin: 0;
+}
+
+#book---category {
+    font-size: 1rem;
+    color: var(--font-category-color);
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+}
+
+#book---title {
+    font-size: 1.75rem;
+    color: var(--book-title-color);
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#book---author {
+    font-size: 1.4rem;
+    color: var(--book-title-color);
+    font-weight: 400;
+    margin-left: 15px;
+}
+
+#book---pages {
+    font-size: 1rem;
+    color: var(--font-category-color);
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    margin-left: 15px;
+}
+
+.book--buttons {
+    background-color: var(--button-container);
+    display: flex;
+    border-top: 4px solid rgb(81 97 114 / 5%);
+    flex-grow: 1;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.book--buttons > p {
+    font-size: 1.25rem;
+}
+
+.book--buttons > button {
+    height: 65%;
+    width: 35%;
+    border-radius: 7px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    background-color: var(--button-container);
+    border: 0;
+    color: var(--book-title-color);
+    font-weight: 400;
+    font-family: "Poppins";
+}
+
+.book--buttons > button > span {
+    font-size: 1.5rem;
+}
+
+#read-btn > span {
+    color: rgb(54, 128, 54);
+}
+
+#remove-btn > span {
+    color: rgb(255, 88, 88);
+}
+
+.vertical {
+    border-left: 2px solid var(--wrapper-color);
+    height: 30px;
+    left: 50%;
 }
