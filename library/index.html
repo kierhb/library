@@ -77,7 +77,7 @@
                             <button id="remove-btn"><span class="material-symbols-outlined">delete</span>Remove</button>
                         </div>
                     </li>
-                    
+
                     <li class="book--el">
                         <div class="book--details">
                             <h6 id="book---category">Light Novel</h6>
@@ -94,6 +94,36 @@
 
                 </ul>
                 
+            </div>
+
+            <div class="popup">
+                <div class="popup-form">
+                    <span class="material-symbols-outlined">close</span>
+                    <div id="add--icon">
+                        <span class="material-symbols-outlined">menu_book</span>
+                    </div>
+                    <div class="form-content">
+                        <select id="category" name="Category">
+                            <option value="" disabled selected hidden>Select Category...</option>
+                            <option value="light-novel">Light Novel</option>
+                            <option value="manga">Manga</option>
+                            <option value="novel">Novel</option>
+                        </select>
+                        <input type="text" id="title" name="title" placeholder="Title">
+                        <input type="text" id="author" name="author" placeholder="Author">
+                        <input type="number" id="pages" name="pages" placeholder="Pages">
+                        <div id="read">
+                            <label for="checkbox">Have you read it?</label>
+                            <input id="checkbox" name="read" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button id="submit-btn" type="submit">
+                            <span class="material-symbols-outlined">library_add</span>
+                            Submit
+                        </button>
+                    </div>
+                    </div>
             </div>
         </div>
     </body>
