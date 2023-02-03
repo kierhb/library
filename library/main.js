@@ -1,10 +1,16 @@
-const addBook = document.querySelector("#add---book")
+const popup = document.querySelector(".popup")
+const addBtn = document.querySelector("#add---book")
 const closeBtn = document.querySelector(".close-btn")
 const submitBtn = document.querySelector("#submit-btn")
-const popup = document.querySelector(".popup")
+const delAllBtn = document.querySelector("#del---all")
 
+let readNum = document.querySelector("#read--num")
+let unreadNum = document.querySelector("#unread--num")
+let totalNum = document.querySelector("#total--num")
 
-addBook.addEventListener("click", function() {
+const booksDisplay = document.querySelector(".books-display")
+
+addBtn.addEventListener("click", function() {
     popup.classList.add("active")
 })
 
@@ -12,11 +18,30 @@ closeBtn.addEventListener("click", function() {
     popup.classList.remove("active")
 })
 
+delAllBtn.addEventListener("dblclick", function() {
+    localStorage.clear()
+    myLibrary = []
+    booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
+})
+
+//! Display book Numbers 
+
+let numRead = 0
+let numUnread = 0
+let numTotal = 0
+
+function displayNumbers() {
+
+
+}
 
 
 //? Retrieve book information and save to localStorage
 
-let myLibrary = []
+const booksFromLocalStorage = JSON.parse(localStorage.getItem("myBooks"))
+
+let myLibrary = !booksFromLocalStorage ? [] : JSON.parse(localStorage.getItem("myBooks"))
+renderBooks()
 
 const bookCategory = document.querySelector("#category")
 const bookTitle = document.querySelector("#title")
@@ -44,11 +69,51 @@ function getBookInfo() {
 function addBookToLibrary() {
     getBookInfo()
     myLibrary.push(getBookInfo())
+    localStorage.setItem("myBooks", JSON.stringify(myLibrary))
 }
 
 submitBtn.addEventListener("click", function() {
     popup.classList.remove("active")
 
     addBookToLibrary()
-    console.log(myLibrary)
+    renderBooks()
+
+    bookCategory.value = ""
+    bookTitle.value = ""
+    bookAuthor.value = ""
+    bookPages.value = ""
+    bookIsRead.checked = false
 })
+
+
+function renderBooks() {
+    const myBooks = JSON.parse(localStorage.getItem("myBooks"))
+
+    let bookCards = ""
+
+    if (!myBooks) {
+        booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
+    } else {
+        myBooks.map(book => {
+            bookCards += `
+                <li class="book--el">
+                    <div class="book--details">
+                        <h6 id="book---category">${book.category}</h6>
+                        <h3 id="book---title">${book.title}</h3>
+                        <h4 id="book---author">by ${book.author}</h4>
+                        <div id="book---pages">${book.pages} pages</div>
+                    </div>
+                    <div class="book--buttons">
+                        ${book.isRead ? 
+                            `<button id="read-btn"><span class="material-symbols-outlined">book</span>Unread</button>` : 
+                            `<button id="read-btn"><span class="material-symbols-outlined">book</span>Read</button>`
+                        }
+                        <div class = "vertical"></div>
+                        <button id="remove-btn"><span class="material-symbols-outlined">delete</span>Remove</button>
+                    </div>
+                </li>
+            `
+            booksDisplay.innerHTML = bookCards
+        })
+    }
+}

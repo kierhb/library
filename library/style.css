@@ -78,7 +78,7 @@ body {
     gap: 5px;
 }
 
-#nav--title {
+#read--num, #unread--num, #total--num {
     font-size: 1.75rem;
     font-weight: 400;
     color: var(--header-color);
@@ -417,4 +417,18 @@ ul {
     transform: scale(1);
 }
 
-/* P O P U P   F O R M   A N I M A T I O N */
+
+.empty-library {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%) scale(0.5);
+
+    font-size: 30px;
+    color: var(--book-title-color);
+}
+
+.empty-library {
+    animation: growIn 1s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+
+}
