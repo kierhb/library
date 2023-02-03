@@ -260,8 +260,13 @@ ul {
 .popup {
     position: fixed;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: -150%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15);
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+
     width: 100%;
     height: 100%;
 
@@ -273,8 +278,17 @@ ul {
 
 }
 
+.popup.active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
 .popup-form {
-    width: 350px;
+    width: 375px;
     height: 550px;
     background-color: var(--white);
     display: flex;
@@ -283,13 +297,16 @@ ul {
     align-items: center;
 }
 
-.popup-form > span {
-    color: var(--header-color);
+.close-btn{
     position: relative;
-    left: 155px;
+    left: 165px;
     top: 10px;
 
     cursor: pointer;
+}
+
+.close-btn > span {
+    color: var(--header-color);
 }
 
 #add--icon {
