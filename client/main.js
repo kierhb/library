@@ -60,6 +60,12 @@ function Book(category, title, author, pages, isRead) {
     this.isRead = isRead
 }
 
+Book.prototype.toggle = function() {
+    this.isRead =!this.isRead
+}
+
+
+
 function getBookInfo() {
     const bkCategory = bookCategory.value
     const bkTitle = bookTitle.value
@@ -92,7 +98,7 @@ submitBtn.addEventListener("click", function() {
 function renderBooks() {
     const myBooks = JSON.parse(localStorage.getItem("myBooks"))
 
-    if (!myBooks) {
+    if (!myBooks || myBooks.length === 0) {
         booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
     } else {
         booksDisplay.innerHTML = ""
@@ -109,11 +115,11 @@ function renderBooks() {
             </div>
             <div class="book--buttons">
                 ${book.isRead ? 
-                    `<button id="read-btn"><span class="material-symbols-outlined">book</span>Unread</button>` : 
-                    `<button id="read-btn"><span class="material-symbols-outlined">book</span>Read</button>`
+                    `<button id="read-btn" onclick="toggleRead(${i})"><span class="material-symbols-outlined">book</span>Unread</button>` : 
+                    `<button id="read-btn" onclick="toggleRead(${i})"><span class="material-symbols-outlined">book</span>Read</button>`
                 }
                 <div class="vertical"></div>
-                <button id="remove-btn"><span class="material-symbols-outlined">delete</span>Remove</button>
+                <button id="remove-btn" onclick="removeBook(${i})"><span class="material-symbols-outlined">delete</span>Remove</button>
             </div>
             `
             booksDisplay.appendChild(bookEl)
@@ -123,36 +129,6 @@ function renderBooks() {
 
 function removeBook(index) {
     myLibrary.splice(index, 1)
-}
-
-function BACKUPrenderBooks() {
-    const myBooks = JSON.parse(localStorage.getItem("myBooks"))
-
-    let bookCards = ""
-
-    if (!myBooks) {
-        booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
-    } else {
-        myBooks.map(book => {
-            bookCards += `
-                <li class="book--el">
-                    <div class="book--details">
-                        <h6 id="book---category">${book.category}</h6>
-                        <h3 id="book---title">${book.title}</h3>
-                        <h4 id="book---author">by ${book.author}</h4>
-                        <div id="book---pages">${book.pages} pages</div>
-                    </div>
-                    <div class="book--buttons">
-                        ${book.isRead ? 
-                            `<button id="read-btn"><span class="material-symbols-outlined">book</span>Unread</button>` : 
-                            `<button id="read-btn"><span class="material-symbols-outlined">book</span>Read</button>`
-                        }
-                        <div class="vertical"></div>
-                        <button id="remove-btn"><span class="material-symbols-outlined">delete</span>Remove</button>
-                    </div>
-                </li>
-            `
-            booksDisplay.innerHTML = bookCards
-        })
-    }
+    localStorage.setItem("myBooks", JSON.stringify(myLibrary))
+    renderBooks()
 }

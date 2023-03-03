@@ -240,11 +240,10 @@ ul {
 }
 
 .book--el:hover {
-    border: 5px solid rgb(255, 0, 0, 0);
-    transform: scale(0.5);
+    transform: scale(1.01);
 }
 
-.book--el, .nav-container {
+.nav-container {
     animation: growIn 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
     transform: scale(0.5);
 }
