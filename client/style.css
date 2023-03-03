@@ -1,0 +1,434 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+     font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins";
+    background-color: var(--wrapper-color);
+
+    --max-width: 1200px;
+    --header-color: #36404a;
+    --white: #ffffff;
+    --project-title-color: #45addf;
+    --hover-color: #109bdb;
+    --wrapper-color: #ebeff2;
+    --button-container: #fafbfd;
+    --button-container-hover: #e9e9e9;
+    --font-category-color: #999ba1;
+    --book-title-color: #5d5f6d;
+}
+
+.container {
+
+}
+
+
+/* H E A D E R */
+.header {
+    background-color: var(--header-color);
+    margin: 0;
+    height: 80px;
+}
+
+.header-wrapper {
+    max-width: var(--max-width);
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    color: var(--white);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin: 0;
+    cursor: default;
+    margin-left: 15px;
+}
+
+#project--title {
+    color: var(--project-title-color);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    cursor: default;
+    margin-right: 15px;
+}
+
+/* N A V   B A R */
+.wrapper {
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.nav-container {
+    padding: 12px 0px 12px 10px;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+#read--num, #unread--num, #total--num {
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--header-color);
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.button--container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.button--container > button {
+    margin: 0.2em 1.5em;
+    background-color: var(--project-title-color);
+    color: var(--white);
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 0;
+    border-radius: 7px;
+    gap: 5px;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-transition: 0.5s;
+    transition: 0.25s;
+}
+
+/* B O O K   D I S P L A Y */
+ul {
+    list-style-type: none;
+}
+
+.books-display {
+    margin: 0 25px 25px;
+    padding: 0;
+    height: 90vh;
+}
+
+.book--el {
+    background-color: var(--white);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    box-shadow: 0px 3px 5px rgb(81 97 114 / 25%);
+}
+
+.book--details {
+    padding: 20px;
+    height: 75%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
+.book--details > * {
+    margin: 0;
+}
+
+#book---category {
+    font-size: 1rem;
+    color: var(--font-category-color);
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+}
+
+#book---title {
+    font-size: 1.75rem;
+    color: var(--book-title-color);
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+#book---author {
+    font-size: 1.4rem;
+    color: var(--book-title-color);
+    font-weight: 400;
+    margin-left: 15px;
+}
+
+#book---pages {
+    font-size: 1rem;
+    color: var(--font-category-color);
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    margin-left: 15px;
+}
+
+.book--buttons {
+    background-color: var(--button-container);
+    display: flex;
+    border-top: 4px solid rgb(81 97 114 / 15%);
+    flex-grow: 1;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.book--buttons > p {
+    font-size: 1.25rem;
+}
+
+.book--buttons > button {
+    height: 65%;
+    width: 35%;
+    border-radius: 7px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    background-color: var(--button-container);
+    border: 0;
+    color: var(--book-title-color);
+    font-weight: 400;
+    font-family: "Poppins";
+    -webkit-transition: 0.5s;
+    transition: 0.25s;
+}
+
+.book--buttons > button > span {
+    font-size: 1.5rem;
+}
+
+#read-btn > span {
+    color: rgb(54, 128, 54);
+}
+
+#remove-btn > span {
+    color: rgb(255, 88, 88);
+}
+
+.vertical {
+    border-left: 2px solid var(--wrapper-color);
+    height: 30px;
+    left: 50%;
+}
+
+/* A N I M A T I O N S */
+.button--container > button:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.04);
+}
+
+.button--container > button:active {
+    transform: scale(1);
+}
+
+.book--buttons > button:hover {
+    background-color: var(--button-container-hover);
+    transform: scale(1.05);
+}
+
+.book--buttons > button:active {
+    transform: scale(1);
+}
+
+.book--el:hover {
+    border: 5px solid rgb(255, 0, 0, 0);
+    transform: scale(0.5);
+}
+
+.book--el, .nav-container {
+    animation: growIn 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+    transform: scale(0.5);
+}
+
+@keyframes growIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/* P O P U P    F O R M */
+.popup {
+    position: fixed;
+    left: 50%;
+    top: -150%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.15);
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgb(81 97 114 / 50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.popup.active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 20ms ease-in-out 0ms;
+}
+
+.popup-form {
+    width: 375px;
+    height: 550px;
+    background-color: var(--white);
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.close-btn{
+    position: relative;
+    left: 165px;
+    top: 10px;
+
+    cursor: pointer;
+}
+
+.close-btn > span {
+    color: var(--header-color);
+}
+
+#add--icon {
+    background-color: var(--header-color);
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add--icon > span {
+    color: var(--project-title-color);
+    font-size: 40px;
+    cursor: default;
+}
+
+.form-content {
+    padding: 25px 35px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 70%
+}
+
+#category, #title, #author, #pages {
+    padding: 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 3px;
+    background-color: var(--button-container);
+    color: var(--book-title-color);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#category:focus, #title:focus, #author:focus, #pages:focus {
+    transform: scale(1);
+    font-weight: bold;
+    outline: none;
+    background-color: var(--button-container-hover);
+}
+
+#pages {
+    width: 60%;
+}
+
+#read {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+#read {
+    font-size: 15px;
+}
+
+#checkbox {
+    margin-left: 2px;
+    height: 25px;
+    width: 25px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.button {
+    width: 100%;
+    background-color: var(--button-container);
+    border-top: 4px solid rgb(81 97 114 / 15%);
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submit-btn {
+    height: 65%;
+    width: 65%;
+    border-radius: 7px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.3rem;
+    background-color: var(--button-container);
+    border: 0;
+    color: var(--book-title-color);
+    font-weight: 400;
+    font-family: "Poppins";
+    -webkit-transition: 0.5s;
+    transition: 0.25s;
+}
+
+#submit-btn > span {
+    color: var(--project-title-color);
+}
+
+#submit-btn:hover {
+    background-color: var(--button-container-hover);
+    transform: scale(1.04);;
+}
+
+#submit-btn:active {
+    transform: scale(1);
+}
+
+
+.empty-library {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%) scale(0.5);
+
+    font-size: 30px;
+    color: var(--book-title-color);
+}
+
+.empty-library {
+    animation: growIn 1s cubic-bezier(0.23, 1, 0.320, 1) forwards;
+
+}
