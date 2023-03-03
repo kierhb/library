@@ -41,7 +41,9 @@ function displayNumbers() {
 
 
 //? Retrieve book information from Local Storage
-let myLibrary = []
+const booksFromLocalStorage = JSON.parse(localStorage.getItem("myBooks"))
+
+let myLibrary = !booksFromLocalStorage ? [] : JSON.parse(localStorage.getItem("myBooks"))
 
 renderBooks()
 
@@ -71,6 +73,7 @@ function getBookInfo() {
 function addBookToLibrary() {
     getBookInfo()
     myLibrary.push(getBookInfo())
+    saveToLocalStorage()
     renderBooks()
 }
 
@@ -88,7 +91,7 @@ submitBtn.addEventListener("click", function() {
 })
 
 function renderBooks() {
-    if (myLibrary.length === 0 ) {
+    if (!myLibrary || myLibrary.length === 0 ) {
         booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
     } else {
         booksDisplay.innerHTML = ""
@@ -122,20 +125,22 @@ function renderBooks() {
 
 function removeBook(index) {
     myLibrary.splice(index, 1)
+    saveToLocalStorage()
     renderBooks()
-}
-
-Book.prototype.toggleRead = function() {
-    this.isRead = !this.isRead
 }
 
 function toggleRead(index) {
     myLibrary[index].toggleRead()
     renderBooks()
 }
+Book.prototype.toggleRead = function() {
+    this.isRead = !this.isRead
+}
+
 
 //* Save Session to Local Storage
 
-saveSession.addEventListener("click", function() {
+function saveToLocalStorage() {
     localStorage.setItem("myBooks", JSON.stringify(myLibrary))
-})
+}    
+
