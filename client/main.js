@@ -4,6 +4,7 @@ const closeBtn = document.querySelector(".close-btn")
 const submitBtn = document.querySelector("#submit-btn")
 const delAllBtn = document.querySelector("#del---all")
 const readBtn = document.querySelector("#read-btn")
+const saveSession = document.querySelector("#save---session")
 
 let readNum = document.querySelector("#read--num")
 let unreadNum = document.querySelector("#unread--num")
@@ -39,11 +40,9 @@ function displayNumbers() {
 }
 
 
-//? Retrieve book information and save to localStorage
+//? Retrieve book information from Local Storage
+let myLibrary = []
 
-const booksFromLocalStorage = JSON.parse(localStorage.getItem("myBooks"))
-
-let myLibrary = !booksFromLocalStorage ? [] : JSON.parse(localStorage.getItem("myBooks"))
 renderBooks()
 
 const bookCategory = document.querySelector("#category")
@@ -60,12 +59,6 @@ function Book(category, title, author, pages, isRead) {
     this.isRead = isRead
 }
 
-Book.prototype.toggle = function() {
-    this.isRead =!this.isRead
-}
-
-
-
 function getBookInfo() {
     const bkCategory = bookCategory.value
     const bkTitle = bookTitle.value
@@ -78,7 +71,7 @@ function getBookInfo() {
 function addBookToLibrary() {
     getBookInfo()
     myLibrary.push(getBookInfo())
-    localStorage.setItem("myBooks", JSON.stringify(myLibrary))
+    renderBooks()
 }
 
 submitBtn.addEventListener("click", function() {
@@ -94,16 +87,13 @@ submitBtn.addEventListener("click", function() {
     bookIsRead.checked = false
 })
 
-
 function renderBooks() {
-    const myBooks = JSON.parse(localStorage.getItem("myBooks"))
-
-    if (!myBooks || myBooks.length === 0) {
+    if (myLibrary.length === 0 ) {
         booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
     } else {
         booksDisplay.innerHTML = ""
-        for (let i = 0; i < myBooks.length; i++) {
-            let book = myBooks[i]
+        for (let i = 0; i < myLibrary.length; i++) {
+            let book = myLibrary[i]
             let bookEl = document.createElement("li")
             bookEl.setAttribute("class", "book--el")
             bookEl.innerHTML = `
@@ -114,21 +104,38 @@ function renderBooks() {
                 <div id="book---pages">${book.pages} pages</div>
             </div>
             <div class="book--buttons">
-                ${book.isRead ? 
-                    `<button id="read-btn" onclick="toggleRead(${i})"><span class="material-symbols-outlined">book</span>Unread</button>` : 
-                    `<button id="read-btn" onclick="toggleRead(${i})"><span class="material-symbols-outlined">book</span>Read</button>`
-                }
+
+                <button id="read-btn" onclick="toggleRead(${i})"><span class="material-symbols-outlined">book</span>
+                    ${book.isRead ? "Unread" : "Read" }
+                </button>
                 <div class="vertical"></div>
                 <button id="remove-btn" onclick="removeBook(${i})"><span class="material-symbols-outlined">delete</span>Remove</button>
             </div>
             `
             booksDisplay.appendChild(bookEl)
+
         }
     }
 }
 
+//* Remove Book from Library
+
 function removeBook(index) {
     myLibrary.splice(index, 1)
-    localStorage.setItem("myBooks", JSON.stringify(myLibrary))
     renderBooks()
 }
+
+Book.prototype.toggleRead = function() {
+    this.isRead = !this.isRead
+}
+
+function toggleRead(index) {
+    myLibrary[index].toggleRead()
+    renderBooks()
+}
+
+//* Save Session to Local Storage
+
+saveSession.addEventListener("click", function() {
+    localStorage.setItem("myBooks", JSON.stringify(myLibrary))
+})

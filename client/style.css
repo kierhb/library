@@ -108,6 +108,10 @@ body {
     transition: 0.25s;
 }
 
+#save---session {
+    background-color: #5107db;
+}
+
 /* B O O K   D I S P L A Y */
 ul {
     list-style-type: none;
