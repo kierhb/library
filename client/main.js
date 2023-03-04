@@ -24,28 +24,44 @@ delAllBtn.addEventListener("dblclick", function() {
     localStorage.clear()
     myLibrary = []
     booksDisplay.innerHTML = `<p class="empty-library">You're Library is Empty</p>`
+    renderBooks()
 })
-
 
 
 //! Display book Numbers 
 
-let numRead = 0
-let numUnread = 0
-let numTotal = 0
-
 function displayNumbers() {
+    if (!myLibrary || myLibrary.length === 0 ) {
+        readNum.innerText = "Read Books: 0"
+        unreadNum.innerText = "Unread Books: 0"
+        totalNum.innerText = "Total Books: 0"
+    } else {
+        totalNum.innerText = `Total Books: ${myLibrary.length}`
+        let readTotal = []
+        let unReadTotal = []
 
-
+        for (let i = 0; i < myLibrary.length; i++) {
+            let book = myLibrary[i]
+            if (book.isRead === true) {
+                readTotal.push(book)
+            } if (book.isRead === false) {
+                unReadTotal.push(book)
+            }
+        }
+        
+        readNum.innerText = `Read Books: ${readTotal.length}`
+        unreadNum.innerText = `Unread Books: ${unReadTotal.length}`
+    }
 }
 
 
 //? Retrieve book information from Local Storage
+
 const booksFromLocalStorage = JSON.parse(localStorage.getItem("myBooks"))
 
 let myLibrary = !booksFromLocalStorage ? [] : JSON.parse(localStorage.getItem("myBooks"))
 
-renderBooks()
+document.addEventListener("DOMContentLoaded", renderBooks())
 
 const bookCategory = document.querySelector("#category")
 const bookTitle = document.querySelector("#title")
@@ -73,6 +89,7 @@ function getBookInfo() {
 function addBookToLibrary() {
     getBookInfo()
     myLibrary.push(getBookInfo())
+
     saveToLocalStorage()
     renderBooks()
 }
@@ -81,7 +98,6 @@ submitBtn.addEventListener("click", function() {
     popup.classList.remove("active")
 
     addBookToLibrary()
-    renderBooks()
 
     bookCategory.value = ""
     bookTitle.value = ""
@@ -119,6 +135,7 @@ function renderBooks() {
 
         }
     }
+    displayNumbers()
 }
 
 //* Remove Book from Library
@@ -129,14 +146,15 @@ function removeBook(index) {
     renderBooks()
 }
 
-function toggleRead(index) {
-    myLibrary[index].toggleRead()
-    renderBooks()
-}
 Book.prototype.toggleRead = function() {
     this.isRead = !this.isRead
 }
 
+function toggleRead(index) {
+    myLibrary[index].toggleRead()
+    renderBooks()
+    saveToLocalStorage()
+}
 
 //* Save Session to Local Storage
 
